@@ -43,10 +43,13 @@
           method: "POST",
           body: formData
         });
-        estado.textContent = "Datos enviados con éxito.";
+        estado.textContent = "✅ Datos enviados con éxito.";
+        estado.style.color = "green";
         form.reset();
       } catch (error) {
-        estado.textContent = "Error al enviar.";
+        estado.textContent = "❌ Error al enviar.";
+        estado.style.color = "red";
+        console.error(error);
       }
     });
   </script>
