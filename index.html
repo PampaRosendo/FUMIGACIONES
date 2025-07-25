@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Formulario Cliente</title>
+</head>
+<body>
+  <h2>Formulario de Registro de Cliente</h2>
+  <form id="clienteForm">
+    <input type="text" name="nombre" placeholder="Nombre" required><br>
+    <input type="text" name="apellido" placeholder="Apellido" required><br>
+    <input type="text" name="dni" placeholder="DNI" required><br>
+    <input type="text" name="domicilio" placeholder="Domicilio" required><br>
+    <input type="date" name="fecha" required><br>
+
+    <label>
+      <input type="radio" name="tipo" value="Desinfección" required> Cliente de Desinfección
+    </label><br>
+    <label>
+      <input type="radio" name="tipo" value="Fumigación A"> Fumigación Completa A
+    </label><br>
+    <label>
+      <input type="radio" name="tipo" value="Fumigación B"> Fumigación Completa B
+    </label><br>
+    <label>
+      <input type="radio" name="tipo" value="Fumigación C"> Fumigación Completa C
+    </label><br><br>
+
+    <button type="submit">Enviar</button>
+  </form>
+
+  <p id="estado"></p>
+
+  <script>
+    const form = document.getElementById("clienteForm");
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+      const estado = document.getElementById("estado");
+
+      try {
+        await fetch("TU_URL_DE_APPS_SCRIPT_ACÁ", {
+          method: "POST",
+          body: formData
+        });
+        estado.textContent = "Datos enviados con éxito.";
+        form.reset();
+      } catch (error) {
+        estado.textContent = "Error al enviar.";
+      }
+    });
+  </script>
+</body>
+</html>
